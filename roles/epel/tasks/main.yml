@@ -1,0 +1,10 @@
+---
+
+- name: EPEL | Add Repository
+  yum_repository:
+    baseurl: "{{ epel_repository.url }}"
+    description: EPEL YUM repository
+    enabled: "{{ epel_repository.enabled }}"
+    name: "{{ epel_repository.name }}"
+    state: "{{ epel_repository.state }}"
+    reposdir: "{{ epel_repository.reposdir }}"
