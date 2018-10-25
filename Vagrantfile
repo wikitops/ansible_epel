@@ -40,7 +40,6 @@ Vagrant.configure("2") do |config|
   # Configure box
   config.vm.box         = $box
 
-  # Grafana
   (1..$num_instances).each do |i|
 
     config.vm.provider "virtualbox" do |vb|
