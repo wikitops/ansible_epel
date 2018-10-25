@@ -21,7 +21,7 @@ Be aware that you need to be in the Vagrant directory to be able to run the comm
 
 #### Deployment
 
-To deploy Grafana on Vagrant instance, just run this command :
+To deploy Epel on Vagrant instance, just run this command :
 
 ```bash
 $ vagrant up
