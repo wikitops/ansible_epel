@@ -1,5 +1,8 @@
 #!/bin/bash
 
-sudo yum update
-sudo yum upgrade -y
-sudo yum install -y python python-apt
+# Manage RedhHat environment
+if [ -f /etc/redhat-release ] ; then
+  sudo yum update
+  sudo yum upgrade -y
+  sudo yum install -y python python-apt
+fi
