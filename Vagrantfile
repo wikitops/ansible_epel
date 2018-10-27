@@ -50,29 +50,27 @@ Vagrant.configure("2") do |config|
     config.vm.define vm_name = "%s%02d" % [$instance_name_prefix, i] do |server|
       config.vm.hostname = vm_name
       server.vm.network "private_network", ip: "#{$subnet}#{i}"
-    end
 
-    # Provision
-    config.vm.provision "shell", path: "provision.sh"
-    # config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
+      # Provision
+      config.vm.provision "shell", path: "provision.sh"
+      # config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "/home/vagrant/.ssh/authorized_keys"
 
-    # Only execute the Ansible provisioner when all the machines are up and ready
-    if i == $num_instances
-      config.vm.provision "ansible" do |ansible|
-        ansible.compatibility_mode  = "2.0"
-        ansible.playbook            = $playbook
-        if File.exist?(File.join(File.dirname($inventory), "hosts"))
-          ansible.inventory_path    = $inventory
+      # Only execute the Ansible provisioner when all the machines are up and ready
+      if i == $num_instances
+        config.vm.provision "ansible" do |ansible|
+          ansible.compatibility_mode  = "2.0"
+          ansible.playbook            = $playbook
+          if File.exist?(File.join(File.dirname($inventory), "hosts"))
+            ansible.inventory_path    = $inventory
+          end
+          ansible.become              = true
+          ansible.limit               = "all"
+          ansible.host_key_checking   = false
+          ansible.groups = {
+            "epel" => ["#{$instance_name_prefix}0[1:#{$num_instances}]"]
+          }
         end
-        ansible.become              = true
-        ansible.limit               = "all"
-        ansible.host_key_checking   = false
-        ansible.groups = {
-          "epel" => ["#{$instance_name_prefix}0[1:#{$num_instances}]"]
-        }
       end
     end
-
   end
-
 end
