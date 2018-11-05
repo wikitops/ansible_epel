@@ -6,8 +6,8 @@
 
 # Repository
 epel_repository:
-  enabled: yes
-  gpgcheck: yes
+  enabled: true
+  gpgcheck: true
   gpgkey: http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
   name: epel-repository
   reposdir: /etc/yum.repos.d
