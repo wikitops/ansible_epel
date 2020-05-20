@@ -37,7 +37,7 @@ Current machine states:
 epel01                   running (virtualbox)
 ```
 
-If everything run as expected, you should access the Epel repository on the Vagrant instance.
+If everything run as expected, you should access the Epel repository from the Vagrant instance.
 
 #### Destroy
 
